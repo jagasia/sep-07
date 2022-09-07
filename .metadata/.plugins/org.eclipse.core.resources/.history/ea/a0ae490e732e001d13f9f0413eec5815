@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="MyServlet">
+Number 1: <input type="number" name="txtNo1" /><br/>
+Number 2: <input type="number" name="txtNo2" /><br/>
+<input type="submit" />
+</form>
+</body>
+</html>

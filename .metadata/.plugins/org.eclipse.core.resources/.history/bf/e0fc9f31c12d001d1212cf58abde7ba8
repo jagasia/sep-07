@@ -1,0 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class App8 {
+
+	public static void main(String[] args) {
+		ArrayList<Employee> emps=new ArrayList<>();
+		emps.add(new Employee(15, "Raja", "ECE"));
+		emps.add(new Employee(200, "Abdul Rahman", "BE"));
+		emps.add(new Employee(31, "Ravi", "BE"));
+		emps.add(new Employee(4, "Gowtham", "Mech"));
+		emps.add(new Employee(11, "Vinay", "ECE"));
+		
+		emps.stream()
+		.sorted((a,b)->a.getName().length()-b.getName().length())
+		.forEach(System.out::println);
+	}
+
+}

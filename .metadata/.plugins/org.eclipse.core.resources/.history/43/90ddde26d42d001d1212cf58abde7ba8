@@ -1,0 +1,13 @@
+
+public class App {
+
+	public static void main(String[] args) {
+		Odd t1=new Odd();
+		Odd t2=new Odd();
+		t1.setName("First Thread");
+		t2.setName("Thread 2");
+		t1.start();
+		t2.start();
+	}
+
+}

@@ -1,0 +1,28 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+class IntDescComparator implements Comparator<Integer>
+{
+
+	@Override
+	public int compare(Integer arg0, Integer arg1) {
+		
+		return arg1.compareTo(arg0);
+	}
+	
+}
+
+public class App5 {
+
+	public static void main(String[] args) {
+		Integer []marks= {9,99,10,100,5,3,98,78,87,55};
+		
+//		Arrays.sort(marks, new IntDescComparator());
+		
+		Arrays.sort(marks,(a,b)->a.compareTo(b));
+		
+		for(Integer i:marks)
+			System.out.println(i);
+	}
+
+}

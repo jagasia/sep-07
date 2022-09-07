@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
+public class App6 {
+	public static void main(String[] args) {
+		ArrayList<String> countries = new ArrayList<>();
+		countries.add("India");
+		countries.add("USA");
+		countries.add("Australia");
+		countries.add("Kenya");
+		countries.add("Bangladesh");
+		countries.add("China");
+		countries.add("Pakistan");
+		countries.add("Zimbabve");
+		countries.add("Sri lanka");
+		countries.add("Japan");
+		countries.add("Canada");
+		countries.add("Argentina");
+		
+		Stream<String> s = countries.stream();
+		s.sorted();
+		for(String c:countries)
+			System.out.println(c);
+	}
+}

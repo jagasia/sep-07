@@ -1,0 +1,12 @@
+import java.util.Arrays;
+
+public class App5 {
+
+	public static void main(String[] args) {
+		Integer []marks= {9,99,10,100,5,3,98,78,87,55};
+		Arrays.sort(marks);
+		for(Integer i:marks)
+			System.out.println(i);
+	}
+
+}

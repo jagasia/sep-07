@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class App4 {
+
+	public static void main(String[] args) {
+		ArrayList<Employee> emps=new ArrayList<>();
+		emps.add(new Employee(15, "Raja", "ECE"));
+		emps.add(new Employee(2, "Abdul", "BE"));
+		emps.add(new Employee(31, "John", "CSE"));
+		emps.add(new Employee(4, "Gowtham", "Mech"));
+		emps.add(new Employee(11, "Vinay", "Civil"));
+
+		Collectios.sort(emps);
+		for(Employee e:emps)
+		{
+			System.out.println(e);
+		}
+	}
+
+}

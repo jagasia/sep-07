@@ -1,0 +1,10 @@
+
+public class App {
+
+	public static void main(String[] args) {
+		Odd t1=new Odd();
+		Odd t2=new Odd();
+		
+	}
+
+}

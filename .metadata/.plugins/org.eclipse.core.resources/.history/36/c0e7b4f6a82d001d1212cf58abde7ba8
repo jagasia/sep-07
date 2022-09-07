@@ -1,0 +1,10 @@
+import java.util.Arrays;
+
+public class App3 {
+
+	public static void main(String[] args) {
+		Employee []emps=new Employee[5];
+		
+	}
+
+}

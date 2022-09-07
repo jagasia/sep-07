@@ -1,0 +1,22 @@
+
+
+public class Odd extends Thread
+{
+	public void run()
+	{
+		try {
+			display();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void display() throws InterruptedException
+	{
+		for(int i=1;i<20;i+=2)
+		{			
+			System.out.println(Thread.currentThread().getName()+"\t"+i);
+			Thread.sleep(1000);
+		}
+	}
+}
