@@ -1,0 +1,51 @@
+package model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ProductDaoImpl {
+
+	public int addProduct(Product product) throws SQLException
+	{
+		Connection con = DbConnection.getConnection();
+		PreparedStatement st = con.prepareStatement("INSERT INTO PRODUCT VALUES(?,?,?,?)");
+		st.setInt(1, product.getId());
+		st.setString(2, product.getName());
+		st.setDouble(3, product.getPrice());
+		st.setBytes(4, product.getPic());
+		
+		int no=st.executeUpdate();
+		con.close();
+		return no;
+	}
+	
+	public void getAllProducts() throws SQLException
+	{
+		Connection con = DbConnection.getConnection();
+		Statement st = con.createStatement();
+		st.executeQuery("SELECT * FROM PRODUCT");
+		con.close();
+	}
+	
+	public void findProductById(Integer id) throws SQLException
+	{
+		Connection con = DbConnection.getConnection();
+		con.close();
+	}
+	
+	public void updateProduct(Product product) throws SQLException
+	{
+		Connection con = DbConnection.getConnection();
+		con.close();
+	}
+	
+	public void deleteProduct(Product product) throws SQLException
+	{
+		Connection con = DbConnection.getConnection();
+		con.close();
+	}
+	
+	
+}

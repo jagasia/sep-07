@@ -1,0 +1,19 @@
+package model;
+
+public class Product {
+	private Integer id;
+	private String name;
+	private Double price;
+	private byte[] pic;
+	
+	public Product() {}
+
+	public Product(Integer id, String name, Double price, byte[] pic) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.pic = pic;
+	}
+	
+}

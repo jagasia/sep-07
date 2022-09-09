@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -24,7 +25,21 @@
       
     </div>
     <div class="col-sm-4">
-      <h3>Welcome ${user.firstName }!</h3>
+    <%
+    	HttpSession session1=request.getSession();
+    	User user=(User)session1.getAttribute("user");
+    	if(user!=null)
+    	{
+    		String str=user.getFirstName();
+    		out.println("<h3>Welcome "+ str
+    		+"!</h3>");
+    	}else
+    	{
+    		out.println("You have not logged in. Click <a href=login.jsp> here </a>to go to login page!");
+    	}
+    
+    %>
+      
       
     </div>
     <div class="col-sm-4">
