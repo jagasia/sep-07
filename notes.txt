@@ -1,0 +1,1175 @@
+CDB22DX016,CDB22DX017,EAS22DCX013
+
+OOPS
+Collections
+	hashCode
+	equals		what is compared?
+	Comparable vs Comparator				TreeSet<Employee>
+
+Exceptions
+	checked, unchecked
+		Checked		(the compiler checks if such exceptions are found. If they are not handled, they are not declatred as throws, ERROR)				Compilation error if you ignore checked exception
+		Any class that extends Exception or its sub class is a checked exception
+
+		Any class that extends RuntimeException or its sub class is an unchecked exception. They are ignored by the compiler
+		only at runtime they are visible
+
+	throw vs throws
+
+	throw is used to throw exception
+	throws is used to throw multiple exceptions	(FUNNY)
+	
+	throws IOException, SQLException, NullPointerException	//here we are not throwing the exception. We inform that these exceptions
+		are possible to be thrown inside the method. 
+
+
+
+JSP
+	less idea
+
+Servlet
+	life cycle methods
+
+Java 8
+	functional interface			an interface that contains only 1 abstract method is a functional interface
+		example for functional interface:
+			Runnable
+				run()
+			Comparable
+				compareTo()
+			Comparator
+				compare()
+
+	in such cases, we do not need to create a class for the implementation
+
+			
+	lambda
+	stream api			like SQL select queries are used to query the tables in the database, 
+					stream api is used to do the same on collections
+	filter
+	sort
+	grouping
+	map	
+
+class Employee
+{
+	id
+	name
+	email
+	phone
+	salary
+	department
+}
+
+ArrayList<Employee>	empList
+
+
+i want you to display the department wise sum of salary.
+
+SELECT department_id, AVG(salary) FROM EMPLOYEE 
+GROUP BY department_id
+
+the same can be done using stream api
+
+count
+sum
+avg
+
+
+
+
+Strings
+	StringBuilder, StringBuffer
+
+	arrays
+		looping an array, add same array to it
+
+
+
+
+
+
+Collections
+-------------
+Set vs List
+
+List is ordered
+List allows duplicate
+
+Set is unordered (i have a different opinion)
+Set does not allow duplicate.		Set rejects duplicates.
+
+HashSet
+	How does hash set identify the duplicate element?
+
+HashSet<Integer> marks=new HashSet<>();
+marks.add(10);	//allowed
+marks.add(10);	//rejected
+marks.add(20);	//allowed
+
+HashSet<Employee> employeeSet
+
+how do you say that objects e1 and e2 are duplicates?
+
+if their ids are same?
+if their firstNames are same?
+who decides that?
+
+it is identified by "equals()" method
+If we do not override equals method, there is an equals method already in the Object class (super class for any class we create)
+
+HashSet<Employee>
+	looks like it allows duplicate.
+	Employee e1=new Employee(1, "Raja","Sivakumar");
+	Employee e2=new Employee(1, "Raja","Sivakumar");
+	
+	empSet.add(e1);
+	empSet.add(e2);	
+
+	both are added. Looks like hash set allows duplicate. NO. it is not. here, e1 and e2 are different.
+
+	Only if you have equals method in Employee class and specify 
+
+	return this.getId().equals(arg.getId());
+
+
+		
+Set also has a definite order.
+List is ordered means, the order is same as the order in which we add the elements
+order of addition
+
+1
+5
+2
+9
+
+it prints
+
+1
+5
+2
+9
+
+the order is same as it is added to the collection. That is ORDERED
+Ordered does not mean Asc / Desc
+
+Ordered collection means, the order in which the elements are added
+
+
+Set is unordered means, it does not mean RANDOM.		not random
+
+Set has a definite order
+
+HashSet
+	the order is based on hashCode method
+TreeSet
+	the order is based on Comparable/ Comparator
+LinkedHashSet
+	the order is same as the order in which it is added. It is similar to LIST
+
+
+
+
+
+
+
+TreeSet
+LinkedHashSet
+---------------------------------------------------------------------
+
+Take a notepad and write down all the interview questions you remember
+
+
+What is Jquery
+	Application of Javascript
+
+	in javascript:
+		document.getElementById("txt1").value=20;
+	in jquery
+		$("#txt1").val(20);
+
+
+
+Polymorphism
+Runtime polymorphism	
+	late binding
+		super class instance variable=sub class instance
+	Overriding
+	
+Compiletime polymorphism
+	Overloading
+	
+
+how to establish database connection
+	Jdbc
+	hibernate
+	jpa
+	
+
+difference between == and equals() method
+
+== compares the values if the operands are value types (primitive data types)	8 data types
+== compares the address/ references if the  operands are reference types (objects)	
+
+a==b
+	if a and b are primitive types,  then only, their values are compared.
+	in other cases, a and b are reference types, means object types, their references are compared.
+
+String s1="raja";
+String s2="raja";
+
+this is peculiar because, both s1 and s2 points to same memory locations.
+that location has "raja"
+
+so 
+s1==s2
+is same as 
+s1.equals(s2)
+
+x
+
+compare address/ memory 
+
+===	(Javascript)
+
+equals method always compares the values.
+But if you create a class Employee and do not override, the equals method, then the equals method of super class Object is used. that says the objects are unequal
+
+
+difference between String and String builder
+
+String is immutable
+	we cannot change the value of a string variable.
+	String s1="hello";
+	s1="ravi";		//ravi is an object present in some location.	s1 jumps to that location.
+
+	String s2="abcd";	
+	s2=s1;		//s2 also points to memory of s1
+
+	StringBuilder sb=new StringBuilder("hello");
+	sb.replace
+	sb.append
+	
+
+	sb remains to be same memory location
+
+
+
+
+
+why compare methods are overridden
+
+Comparable or Comparator are useful for
+	i) sorting Arrays
+
+
+public class Employee implements Comparable<Employee>
+{
+	private Integer id;
+	private String name;
+	private String department;
+	public Employee() {}
+	public Employee(Integer id, String name, String department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.department = department;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", department=" + department + "]";
+	}
+	@Override
+	public int compareTo(Employee o) {
+		return o.getName().compareTo(this.getName());
+	}
+	
+}
+///-----------------------------
+import java.util.Arrays;
+
+public class App3 {
+
+	public static void main(String[] args) {
+		Employee []emps=new Employee[5];
+		emps[0]=new Employee(15, "Raja", "ECE");
+		emps[1]=new Employee(2, "Abdul", "BE");
+		emps[2]=new Employee(31, "John", "CSE");
+		emps[3]=new Employee(4, "Gowtham", "Mech");
+		emps[4]=new Employee(11, "Vinay", "Civil");
+		Arrays.sort(emps);
+		for(Employee e:emps)
+		{
+			System.out.println(e);
+		}
+	}
+
+}
+
+
+
+	ii) sorting Lists
+
+		Instead of Arrays.sort()
+		we use
+			Collections.sort()
+
+
+	sort the employees by department desc, id asc
+
+	ORDER BY department, id;
+
+	there is an ArrayList<Integer> marks
+	When i use Collections.sort(marks), it should sort it in descending order. How will you do that?
+	a.compareTo(b)
+	b.compareTo(a)
+		this is trick is not possible because, Integer class cannot be modified
+
+	So we need an external comparator
+import java.util.Arrays;
+import java.util.Comparator;
+
+class IntDescComparator implements Comparator<Integer>
+{
+
+	@Override
+	public int compare(Integer arg0, Integer arg1) {
+		
+		return arg1.compareTo(arg0);
+	}
+	
+}
+
+public class App5 {
+
+	public static void main(String[] args) {
+		Integer []marks= {9,99,10,100,5,3,98,78,87,55};
+		Arrays.sort(marks, new IntDescComparator());
+		for(Integer i:marks)
+			System.out.println(i);
+	}
+
+}
+ 
+
+
+	iii) TreeSets
+	
+
+UNION vs UNION ALL
+
+query1
+UNION
+query2
+
+common rows by both queries are displayed only once (UNION)
+	q1 produces 5 rows
+	q2 produces 5 rows
+	5+5 need not be 10	because duplicate rows are displayed only once
+
+
+common rows are displayed repeatedly including duplicates (UNION ALL)
+	in UNION ALL
+		5+5 is always 10
+union subquery in sql
+
+Map
+hash map
+
+concurrent checked exception
+concurrent map
+
+what is thread
+Methods in streams
+CRUD operator in java.
+
+CREATE READ UPDATE DELETE
+
+JDBC
+
+Employee.java
+EmployeeDao.java		interface
+EmployeeDaoImpl.java	implements EmployeeDao 
+
+getConnection
+createEmployee
+	stores a new row in employee table
+read
+	return all employee records as List<Employee>
+read(int)
+	return 0 or 1 employee based on id
+update
+	updates the employee record if found
+delete
+	delete an employee record if found
+
+
+Lambda
+
+Stream api
+
+
+8 primitive data types
+	byte
+	short
+	int
+	long
+
+	float
+	double
+
+	boolean
+
+	char
+
+casting
+conversion
+boxing
+unboxing
+autoboxing
+
+
+a=b;	//if a and b are same data type, then there is no problem in assigment.
+	//if a and b are different, there are some cases, automatically casting happens.
+	ex:
+		int a=20;
+		float b=2.2f;
+		b=a;		//casting happens automatically.		implicit casting
+
+		now, if you do reverse
+			a=b;	//b has decimal points, which will be lost by storing float in int
+				//ERROR because, there is a loss of precision
+			a=(int)b;	//yes i know that i will lose precision. this is 	explicit casting
+
+		but there are some cases, casting is not possible
+		String s="1";
+		int i=s;		//NOT POSSIBLE.	So conversion is required	
+		int i=Integer.parseInt(s);		///		conversion
+
+Boxing happens when you wrap a primitive value inside a box/ wrapper. What is that wrapper? 	A class is the wrapper.
+
+class Integer
+{
+	int i;		// i is primitive value and is boxed		wrapper		
+}
+
+
+Integer i;
+i=10;			//10 is a value / primitive	but it is converted into an object or put inside the object called i	this is boxing
+
+upto jdk 1.4 this gave error
+
+Integer i=new Integer(10);	//jdk upto 1.4		
+Integer i=10;		//jdk 1.5 onwards, this is allowed.		Auto-boxing
+
+jdk 1.4 or earlier
+
+Integer i=new Integer (20);
+int x=i;		//gives ERROR		unboxing was not automatic during those versions of java
+
+int x=i.intValue();	//this is how we do unboxing in old versions. 	 
+
+but jdk 1.5 onwards
+
+x=i;		//works absolutely fine
+
+What are the other topics in Java you would like to discuss?
+------------------------------------------------------------------------
+PRIMITIVE DATA TYPES
+LANGUAGE FEATURES
+	for each/ enhanced for loop
+	operators
+OOPS
+STRING
+IO
+THREADS
+COLLECTIONS
+JDBC
+JAVA 8
+	LAMBDA
+	STREAM API
+
+
+
+Threads & Multi-Threading
+
+What is the difference between process and thread?
+
+Process is the running instance of a Program.
+If we execute a program, then it creates a process in the microprocessor.
+
+For every process, CPU allocates resources (time & memory)
+
+Every process contains atleast 1 thread.
+
+Single threaded process.
+
+When a process contains more than 1 thread, then it is called as Multi-threaded process.
+
+We need to create threads, in order to do certain task using a dedicated thread.
+
+
+A process has 1 main thread and other child threads.
+
+
+to create child threads, we need to create an object of Thread class.
+
+Thread t1=new Thread();
+
+class MyThread extends Thread
+{}
+
+
+
+MyThread t2=new MyThread();		//this is also a child thread
+
+Runnable interface
+-----------------------
+
+either extends Thread or
+implements Runnable
+
+These are the 2 ways to define a thread.
+But to create a thread, we definitely need to create an object of Thread class or its sub class (means, a class that extends Thread)
+
+class A implements Runnable
+{
+	public void run()
+	{
+		//....work of the thread
+	}
+}
+
+class B extends Thread
+{
+	public void run()
+	{
+		//....work of the thread
+	}
+}
+
+main()
+
+	A a =new A();		//this is not a thread
+	Thread t1=new Thread(a);	//this is thread
+
+	//or
+
+	Thread t3=new Thread(()->{
+		//the work of the thread
+	});
+
+	B b=new B();		//this is thread
+
+
+
+display1();
+display2();
+
+Untill display1() method is running, the next line display2() will not start.	This is normal and called as synchronized.
+
+t1.start();
+t2.start();
+
+when t1 thread is running, the t2 thread will not wait and start and run. 
+t1 and t2 can run parallely and we cannot predict the outcome of the execution.
+
+sometimes, 
+	t1 has 100 lines of code
+	t2 has 100 lines of code
+
+t1 and t2 both are running the same 100 lines of code of same object.
+
+in t1 thread, at 25th line to 30th line, it is a sensitive part. so 
+
+line 25-30 should be executed by only 1 thread at a time
+
+in airport, everybody is roaming independantly
+but when they enter the security check
+
+in a gate, when 1 person enters inside the gate,
+others are made to wait.
+only when that person exits the gate,
+next person is allowed
+
+this area is called as "synchronized" block
+
+in a method, we can mark a portion of the code as "synchronized" using 
+	synchronized block
+
+or we can mark a method itself as synchronized
+entire method
+
+for sync, ensure that 2 threads, access the code belonging to 1 object.
+
+in airport, 2 persons standing in 2 different gates, never wait for other at all. 
+
+
+join()
+
+t1.start();
+t2.start();
+t2.join();		//ensures that all those threads that already have started, will continue and finish the work. Other threads will wait and do not start until 
+t3.start();
+t4.start();
+
+IO
+----
+difference between
+	InputStream & Reader
+	OutputStream & Writer
+
+Reader & Writer are used for character based input and output
+InputStream & OutputStream are used for binary input and output
+	everything other than character are binary
+		primitive
+		objects
+	
+DataInputStream
+	for reading inputs as primitive data types
+		readInt()
+		readFloat()
+
+ObjectInputStream	
+	readObject()
+		The object should be created from a class that implements Serializable
+
+Serializable interface
+	is a marker interface	(means, that does not have any methods inside)
+
+fn1(x)		if x is of an interface type, then we can pass any object of class that implements that interface
+
+transient
+	
+
+
+class Employee implements Serializable
+{
+	id
+	name
+	dateOfBirth
+	transient float salary;		// non persistent
+}
+
+
+Transient members of a class does not participate in the serialization
+
+so if i store an object of employee in a file, that object has salary variable but no value in it.
+
+volatile variable
+	threads normally keep the value of the variable in their cache.
+	but volatile variables are not cached by the threads. their values are always taken from the main memory.
+
+Thread safe
+	variable		volatile
+	methods		synchronized
+	blocks		synchronized blocks
+
+-----------------------------------------------------------------------------------
+Java, Servlets & JSP, Web UI
+------------------------------------
+
+We need to cover Servlets & JSP today
+
+when i learnt java, in core java, i learnt "Applets"
+
+application sounds like more about front end. An application can have even business logic, storage, BUT if it does not have front end, then it is not an app.
+
+applets are GUI that runs in the browser		(end user side)
+
+on the contrast to APPLET, java introduced SERVLET that runs in the server
+
+Using Servelts & JSP, what you do?
+	You create web applications.
+	What HTML cannot do? that Servlets / JSP can do?
+		<form>
+			Enter your name: <input type="text" /><br/>
+			<input type="submit" />
+		</form>
+
+	How will i store the data in the database?
+		i remember JDBC. A java code can store data in the database.
+
+	I want to call a java code from html form submit.		THIS IS WHERE "Servlets" helped me.
+
+
+think about web application (website), 
+I am accessing "Facebook" website.
+i am using a computer / mobile browser to access the website.
+
+I am a client. my browser is used to access the web application.
+There are some code, which comes to my browser and EXECUTE in the browser.
+There are some code, EXECUTES in server itself and produce output that is sent to the browser.
+
+
+
+Example:
+
+lets create a html form and submit the form.
+the form accepts 2 numbers as input
+
+when i submit the form, it should call a java code that adds 2 numbers and displays the output in browser.
+
+Lab setup:
+------------
+	There are many types of eclipse.
+	If you are using Eclipse for Java developer, you cannot use that eclipse.
+		you have to use Eclipse for Java Enterprise Developer
+	or
+		you can use Spring Tool Suite
+
+
+Create a Dynamic Web Project in eclipse/sts
+Steps:
+1) File -> New -> Project
+2) In the Wizards, type "Dynamic Web Project"
+	Next
+		type the Project name "sep-07-01"
+
+	Notice that the "Target Runtime" is <None>
+
+we need to download 
+	Apache Tomcat Server
+		download and unzip the tomcat
+	Add new runtime and choose the folder that has "bin"
+
+3) Finish
+
+4) lets create a html file in this project.
+	right click the project in Project Explorer
+		new
+			html file
+				name it as "index.html"
+5) Type some content inside the <body> tag
+
+6) right click the html code and run as Run on Server
+
+Port 8080 is already in use.
+solutions:
+	i) find the process that runs in 8080 and kill the process
+		a) in cmd prompt
+			netstat -aon
+	ii) change the port number from 8080 to anything other than that. 		Port numbers from 0 - 1000 are reserved for system.
+		a) double click the server and change the port number
+
+
+
+Task:
+1) Open Eclipse/STS
+2) Create a Dynamic Web Project
+3) Choose Apache tomcat server as runtime
+4) Create a html file in the project
+5) put some content inside the body
+6) right click the html code and run as "Run on server"
+7) check the output
+
+
+<form>
+Number 1: <input type="number" /><br/>
+Number 2: <input type="number" /><br/>
+<input type="submit" />
+</form>
+
+
+On submitting the form, the a java program should execute
+	Create a servlet now
+		1) right click the project
+		2) new -> servlet 
+			name for the servlet class and package name
+	How to call the  servlet when the form is submitted?
+		<form action="MyServlet">
+
+
+
+Task:
+Create html file that has a form that accepts 2 numbers as inputs
+on submitting the form, a servlet should be called
+the servlet should be able to get those 2 numbers as inputs and calculate the sum.
+Display the output in browser.
+
+----------------------------------------------------------------
+Servlets
+
+what are servlets
+	Servlets are java programs that are executed at the server
+
+	Scripting
+		client side scripting
+			Javascript
+			Vbscript
+		server side scripting
+			ASP.net
+			JSP, Servlets
+			PHP
+			
+
+JSP vs Servlets
+	JSP is translated into a servlet at runtime
+
+When we write more java code and less of html code, 
+	we use servlets
+
+When we write more html code and less of java code,
+	we use JSP
+
+Servlet is nothing but a java class
+	that extends HttpServlet
+
+Generic Servlet
+HttpServlet extends Generic Servlet
+
+doGet
+doPost
+
+In HTTP
+	GET method is used to get inputs and not secure.
+		http://localhost:8080/sep-07-01/MyServlet?txtNo1=2&txtNo2=3
+
+	in the above url, we are able to see the inputs entered by the user		txtNo1=2&txtNo2=3
+
+	POST method is used to get inputs also and manipulated data
+		POST method is secure. The information are not visible in the browser URL
+
+<form action="MyServlet">
+	the above form does not mention "GET" or "POST" and hence it is by default, "GET" method only
+
+<form method="POST" action="MyServlet">
+	the above form specifies the http method. hence it is POST
+
+http://localhost:8080/sep-07-01/MyServlet
+
+Another reason why POST is better than GET,
+	GET appends the URL and the URL has a limitation		256 characters only allowed in address bar of the browser.
+
+
+Important observation when it is a Servlet
+	We created a class called MyServlet. 	Did you notice that we never created an object of MyServlet class.
+	Who creates the objects of MyServlet class?
+
+Container creates the objects of servlets.
+Container
+	it is a special JVM
+	that provides runtime env for the servlets to run
+
+Web Container
+	Apache tomcat we use, provides the web container
+
+Container
+	takes care of generic services
+		scalability
+			life cycle management
+
+
+Servlets
+	we create to handle our application specific requirements
+
+
+
+Life Cycle of a Servlet
+	normally, we create classes and create objects for the class
+	only when  we require, we create objects
+
+	But container, initially itself creates a pool of instances
+		even before the first request comes for a servlet
+
+	if pool size 100, then 100 objects of servlet are created
+
+	and it will manage several hundreds of users using just 100 instances using 
+		passivation
+		activation
+
+	so programmer is allowed to focus only on the business logic
+	
+Life cycle event
+	init
+	service		service methods are called for every request comes to a servlet
+		doGet
+		doPost
+	destroy
+
+
+Servlet life cycle listeners
+
+listeners are interfaces
+
+ServletContext		application
+Session			session
+
+if you store something in application
+	it is common to all sessions
+
+if you store something in a session
+	it is available only in that session
+
+session is created as a private space for the user/browser
+
+1 project= 1 application
+
+i access this project from 5 browsers
+	5 sessions
+
+
+
+Session/ State management
+	is the ability to retain some information across
+		requests
+		pages
+		session
+		application
+		server
+
+Ex:
+	i login to facebook once.
+	i am able to open multiple windows, or
+	i can navigate to different pages,
+	but still i am remembered by the application
+
+	everytime, we submit a form, it creates a new page and send back to the browser.
+	but user should be able to see the values he already have entered
+	then state management is required.
+
+--------------------------------
+Servlet & JSP
+----------------
+
+What is JSP?
+	Java Server Pages
+
+
+
+
+		response.setContentType("text/html");
+		out.println("<form method=\"post\" action=\"MyServlet\">\r\n" + 
+				"Number 1: <input type=\"number\" name=\"txtNo1\" value="
+				+no1
+				+ " /><br/>\r\n" + 
+				"Number 2: <input type=\"number\" name=\"txtNo2\" value="
+				+no2
+				+ " /><br/>\r\n" + 
+				"<input type=\"submit\" />\r\n" + 
+				"\r\n" + 
+				"</form>");
+		out.print(sum);
+
+
+What you see here, is a JAVA program, inside which we have EMBEDDED html code
+
+SUPPOSE, WE NEED LOT OF HTML CODE, inside which little bit of Java code is required,
+	Solution:
+		JSP
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+
+
+
+Task:
+
+Create a jsp page that accepts the username and password from the user
+on submit, the page should be sent to servlet.
+The servlet should check if the username and password are different.
+If they are different, it should display "Success" in green color. Else it should display "Failure" in red color.
+The output should be displayed in the same page.
+
+JSP basics:
+-----------------
+
+1) scriptlet
+	<%	%>
+
+2) expressions
+	<%=	%>
+
+3) declaration
+	<%!	%>
+
+4) directives
+	<%@	%>
+		i) page
+		ii) taglib
+		iii) include
+
+
+Implicit objects of JSP:
+-------------------------------
+out
+request
+response
+page
+exception
+session
+application
+
+
+These are implicit objects of JSP because, they are already declared and initialized by JSP.
+
+
+
+State management:
+	client side
+		URL re-writing/	Query String		?no1=2&no2=3&result=5
+		Cookies		are simple text files stored in the clients computer by the server
+		Hidden Form fields	<input type="hidden" />
+	server side
+		Session		HttpSession
+		Application	ServletContext
+		Server		ServletConfig
+
+
+
+
+Demo:
+
+TABLE USER_MASTER
+CREATE TABLE USER_MASTER
+(
+	username varchar(20) primary key,
+    password varchar(20) not null,
+    firstName varchar(20),
+    lastName varchar(20),
+    email varchar(20),
+    role varchar(20)
+);
+
+1) User.java	(entity class)
+	username
+	password
+	firstName
+	lastName
+	email
+	role
+2) UserDao.java	interface
+3) UserDaoImpl.java	that implements UserDao interface
+	getConnection
+	read		return all Users
+	read(username)	return 0 or 1 user
+	create		add a new user
+	update
+	delete
+4) signup.jsp
+5) login.jsp
+6) home.jsp
+	Welcome the user by their firstName. If user has not logged in, it should display "You have not logged in. Kindly click here to go to login page.
+
+when we submit the form in jsp, it should call a servlet 
+
+
+for jdbc
+we need to add mysql connector jar file to the project build  path
+
+
+In our last session, we learnt 
+Servlets
+JSP
+
+we created a dynamic web application that allows users to
+	Sign Up
+	Login
+
+Home page welcomes the logged in user.
+
+Today we learn JSTL
+
+JSTL stands for JSP Standard Tag Library
+-----------------------------------------------------
+
+CRUD
+	An administration should be able to add Products to the application.
+
+1) Product.java
+2) ProductDao.java	interface
+3) ProductDaoImpl.java	implements the dao interface
+4) product.jsp
+	we can see all the products present in the db table
+	we can add, update, delete also
+
+CRUD
+	create table Product 
+	(
+			id int primary key,
+			name varchar(50),
+			price double,
+			pic longblob
+	);
+
+
+
+in this form, we are sending a large object (pic)
+so we cannot send it by GET method
+we use POST method
+
+the pic is sent in multi-part
+
+the servlet should be annotated with
+	@MultipartConfig
+
+only then the servlet will be able to capture the multipart form data
+
+in product.jsp
+i need to display all  the products available in the db table
+
+TABULAR form
+
+JSTL
+	add jstl jar file to our project
+
+jstl 1.1
+jstl 1.2
+	we use 1.2 in our project
+
+
+How to display an image in jsp page?
+
+<img src="filename.jpg" />
+
+instead of file, we have a byte array. So we need to convert the byte array into a Base64 string so that we can display it using
+
+<img src="data:image/jpg;base64,[pwoamjxsimfjifojsdimfosjdmfpsodfxpjsipfosdfoisdmjfdi" />
+
+to convert a byte[] into Base64 string, we need a jar file called "apache common jar"
+
+String x=Base64.encodeBase64String(employee.getPhoto());
+
+
+techniques used in our project:
+
+Servlets
+JSP
+Session	(state management)
+scriplets	<% %>
+EL	Expression Language		${	}
+JSTL	core, sql, html		JSP Standard Tag Library
+	jstl jar
+
+HttpCookie
+	constructor		name, value
+	setMaxAge		milllis
+	getName, setName
+	getValue, setValue
+	
+query string
+	?key1=value1&key2=value2
+
+application	=	ServletContext
+session	=	HttpSession
+
